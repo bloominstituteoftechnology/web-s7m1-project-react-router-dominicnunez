@@ -20,11 +20,6 @@ export default function Movie(props) {
         console.error(error);
       });
   }, [id]);
-
-  const saveMovie = evt => {
-    props.addToSavedList(movie)
-   }
-
    
   if (!movie) {
     return <div>Loading movie information...</div>;
@@ -40,7 +35,9 @@ export default function Movie(props) {
       metascore={metascore}
       actors={stars}
       />
-      <div className="save-button" onClick={saveMovie}>Save</div>
+      <div className="save-button" style={{cursor: 'pointer'}} onClick={() => props.handleMovieSaves(movie)}>
+        {props.saved.some(m => m.id === movie.id) ? "Remove" : "Save"}
+      </div>
     </div>
   );
 }

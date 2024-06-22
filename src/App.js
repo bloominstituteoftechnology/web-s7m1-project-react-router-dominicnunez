@@ -25,9 +25,7 @@ export default function App () {
   }, []);
 
   const addToSavedList = (movie) => {
-    if (!saved.some(m => m.id  === movie.id)) {
       setSaved([...saved, {id: movie.id, title: movie.title }]);
-    }
   };
 
   const removeFromSavedList = (movie) => {
@@ -48,7 +46,7 @@ export default function App () {
 
       <Routes>
         <Route path="/" element={<MovieList movies={movies} />} />
-        <Route path="movies/:id" element={<Movie addToSavedList={addToSavedList}/>} />
+        <Route path="movies/:id" element={<Movie saved={saved} handleMovieSaves={handleMovieSaves}/>} />
       </Routes>
     </div>
   );
